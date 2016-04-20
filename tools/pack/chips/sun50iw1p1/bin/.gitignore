@@ -1,0 +1,5 @@
+/u-boot-sun50iw1p1.bin
+/bl31.bin
+/fes1_sun50iw1p1.bin
+/boot0_sdcard_sun50iw1p1.bin
+/boot0_nand_sun50iw1p1.bin

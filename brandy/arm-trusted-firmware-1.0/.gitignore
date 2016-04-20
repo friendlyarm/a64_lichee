@@ -11,3 +11,4 @@ build/
 # Ignore build products from tools
 tools/**/*.o
 tools/fip_create/fip_create
+/cur.log
