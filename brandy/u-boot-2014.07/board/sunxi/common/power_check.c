@@ -305,6 +305,7 @@ int PowerCheck(void)
 		BootPowerState = GetStateOnHighBatteryRatio(PowerBus,LowVoltageFlag,PowerOnCause);
 	}
 
+	BootPowerState = STATE_NORMAL_BOOT;
 	switch(BootPowerState)
 	{
 		case STATE_SHUTDOWN_DIRECTLY:
