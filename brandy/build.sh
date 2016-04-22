@@ -45,7 +45,8 @@ build_uboot()
 		prepare_toolchain
 		#make atf
 		cd arm-trusted-firmware-1.0/
-		make clean && make PLAT=sun50iw1p1
+		#make clean
+		make PLAT=sun50iw1p1
 		cd ..
         fi
 	if [ "x${PLATFORM}" = "xsun50iw1p1" ] || [ "x${PLATFORM}" = "xsun8iw10p1" ]; then
@@ -54,7 +55,7 @@ build_uboot()
 		cd u-boot-2011.09/
 	fi
 
-	make distclean
+	#make distclean
 	if [ "x$MODE" = "xota_test" ] ; then
 		export "SUNXI_MODE=ota_test"
 	fi
