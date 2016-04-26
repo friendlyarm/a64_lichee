@@ -1067,7 +1067,7 @@ config IPC_NS
 config USER_NS
 	bool "User namespace"
 	depends on UIDGID_CONVERTED
-	select UIDGID_STRICT_TYPE_CHECKS
+	#select UIDGID_STRICT_TYPE_CHECKS
 
 	default n
 	help
