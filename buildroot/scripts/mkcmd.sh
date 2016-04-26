@@ -476,8 +476,19 @@ function mklichee()
     
 	check_env
 
-    mkbr && mkkernel && mkrootfs
+    mkbr && mkkernel
     [ $? -ne 0 ] && return 1
+    if [ -e rootfs.ext4 ]; then
+        ln -s rootfs.ext4 out/$LICHEE_CHIP/$LICHEE_PLATFORM/common/rootfs.ext4
+        mk_info "use user's rootfs.ext4."
+    else
+        mk_info "use a fake rootfs.ext4."
+        cd out/$LICHEE_CHIP/$LICHEE_PLATFORM/common/ && dd if=/dev/zero of=rootfs.ext4 bs=1M count=1
+        if [ $? = 0 ] ; then
+            mkfs.ext4 rootfs.ext4 -F >/dev/null
+        fi
+        cd - > /dev/null
+    fi
     
 	mk_info "----------------------------------------"
     mk_info "build lichee OK."

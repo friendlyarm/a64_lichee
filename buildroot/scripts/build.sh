@@ -104,12 +104,12 @@ case "$1" in
         rm -rf ${LICHEE_BR_OUT}
         ;;
     *)
-        if [ "x${LICHEE_PLATFORM}" = "xlinux" ] ; then
-            build_buildroot
-            export PATH=${LICHEE_BR_OUT}/external-toolchain/bin:$PATH
-            build_external
-        else
+#        if [ "x${LICHEE_PLATFORM}" = "xlinux" ] ; then
+#            build_buildroot
+#            export PATH=${LICHEE_BR_OUT}/external-toolchain/bin:$PATH
+#            build_external
+#        else
             build_toolchain
-        fi
+#        fi
         ;;
 esac
