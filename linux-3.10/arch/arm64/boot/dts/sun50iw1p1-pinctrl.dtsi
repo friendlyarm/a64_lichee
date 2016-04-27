@@ -435,10 +435,10 @@
 			};
 
 			gmac_pins_a: gmac@0 {
-				allwinner,pins = "PD8", "PD9", "PD10", "PD11",
-						"PD12", "PD13", "PD14", "PD15",
-						"PD16", "PD17", "PD18", "PD19",
-						"PD20", "PD21", "PD22", "PD23";
+				allwinner,pins = "PD18", "PD17", "PD16", "PD15",
+						"PD20", "PD19", "PD11", "PD10",
+						"PD9", "PD8", "PD13", "PD12",
+						"PD21", "PD22", "PD23";
 				allwinner,function = "gmac0";
 				allwinner,muxsel = <4>;
 				allwinner,drive = <3>;

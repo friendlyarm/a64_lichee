@@ -158,36 +158,6 @@ dram_tpr13      = 0x04000800
 ;   PA08  *     *           PA18        *           PA25        *      *       ;
 ;   PA09  *     *      *    PA19   *    *      *  PA26~27  *    *      *       ;
 ;------------------------------------------------------------------------------;
-[gmac_para]
-gmac_used          = 0
-gmac_txd0          = port:PA00<2><default><default><default>
-gmac_txd1          = port:PA01<2><default><default><default>
-gmac_txd2          = port:PA02<2><default><default><default>
-gmac_txd3          = port:PA03<2><default><default><default>
-gmac_txd4          = port:PA04<2><default><default><default>
-gmac_txd5          = port:PA05<2><default><default><default>
-gmac_txd6          = port:PA06<2><default><default><default>
-gmac_txd7          = port:PA07<2><default><default><default>
-gmac_txclk         = port:PA08<2><default><default><default>
-gmac_txen          = port:PA09<2><default><default><default>
-gmac_gtxclk        = port:PA10<2><default><default><default>
-gmac_rxd0          = port:PA11<2><default><default><default>
-gmac_rxd1          = port:PA12<2><default><default><default>
-gmac_rxd2          = port:PA13<2><default><default><default>
-gmac_rxd3          = port:PA14<2><default><default><default>
-gmac_rxd4          = port:PA15<2><default><default><default>
-gmac_rxd5          = port:PA16<2><default><default><default>
-gmac_rxd6          = port:PA17<2><default><default><default>
-gmac_rxd7          = port:PA18<2><default><default><default>
-gmac_rxdv          = port:PA19<2><default><default><default>
-gmac_rxclk         = port:PA20<2><default><default><default>
-gmac_txerr         = port:PA21<2><default><default><default>
-gmac_rxerr         = port:PA22<2><default><default><default>
-gmac_col           = port:PA23<2><default><default><default>
-gmac_crs           = port:PA24<2><default><default><default>
-gmac_clkin         = port:PA25<2><default><default><default>
-gmac_mdc           = port:PA26<2><default><default><default>
-gmac_mdio          = port:PA27<2><default><default><default>
 
 ;----------------------------------------------------------------------------------
 ;i2c configuration

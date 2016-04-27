@@ -1343,12 +1343,9 @@
 			clocks   = <&clk_gmac>;
 			clock-names = "gmac";
 			phy-mode = "rgmii";
-			tx-delay = <7>;
-			rx-delay = <31>;
-			gmac_power1 = "axp81x_dldo2:2500000";
-			gmac_power2 = "axp81x_eldo2:1800000";
-			gmac_power3 = "axp81x_fldo1:1200000";
-			status = "disable";
+			tx-delay = <3>;
+			rx-delay = <0>;
+			status = "okay";
 		};
 	};
 };
