@@ -187,7 +187,7 @@ int sunxi_bmp_display(char *name)
 	int  ret = -1;
 	//const size_t bmp_buff_len = 10<<20; //10M
 	//size_t file_size = 0;
-	char * bmp_argv[6] = { "fatload", "sunxi_flash", "0:0", "00000000", bmp_name, NULL };
+	char * bmp_argv[6] = { "fatload", "mmc", "0:1", "00000000", bmp_name, NULL };
 
 	// free() function  will  take a long time,so not use malloc memory
 	bmp_buff = (char*)CONFIG_SYS_SDRAM_BASE; 

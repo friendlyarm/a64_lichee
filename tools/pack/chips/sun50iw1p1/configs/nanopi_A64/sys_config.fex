@@ -501,8 +501,9 @@ pwm_positive        = port:PD22<7><0><default><default>
 
 [boot_disp]
 output_disp = 0
-output_type = 1
-output_mode = 4
+output_type = 3
+output_mode = 5
+output_full = 0
 
 ;--------------------------------------------------------------------------------
 ;csi (COMS Sensor Interface) configuration
