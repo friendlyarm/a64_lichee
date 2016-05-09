@@ -22,12 +22,12 @@ pt_warn "This script is only for ANDROID/DRAGON."
 
 if [ $UID -ne 0 ]
     then
-    pt_error "Please run as root."
+    pt_info "Please run as root."
     exit
 fi
 
 if [ $# -ne 1 ]; then
-    pt_error "Usage:$0 device"
+    pt_info "Usage:$0 device"
     exit 1
 fi
 
