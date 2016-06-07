@@ -48,7 +48,7 @@ if [ ${BLOCK_CNT} -gt 64000000 ]; then
     exit 1
 fi
 
-cd tools/pack/out/ > /dev/null
+cd ../tools/pack/out/ > /dev/null
 [ -e ${boot_img} ] && dd if=${boot_img} of=${SDCARD} bs=1M seek=68
 sync
 cd -  > /dev/null

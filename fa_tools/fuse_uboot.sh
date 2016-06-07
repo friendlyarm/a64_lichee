@@ -21,7 +21,7 @@ function pt_info()
 
 if [ $UID -ne 0 ]
     then
-    pt_info "Please run as root."
+    echo "Please run as root."
     exit
 fi
 
@@ -30,38 +30,27 @@ if [ $# -ne 1 ]; then
     exit 1
 fi
 
-apt-get -y --force-yes install pv > /dev/null
 DEV_NAME=`basename $1`
 BLOCK_CNT=`cat /sys/block/${DEV_NAME}/size`
 if [ $? -ne 0 ]; then
-    pt_error "Error: Can't find device ${DEV_NAME}"
+    pt_error "Can't find device ${DEV_NAME}"
     exit 1
 fi
 
 if [ ${BLOCK_CNT} -le 0 ]; then
-    pt_error "Error: NO media found in card reader."
+    pt_error "NO media found in card reader."
     exit 1
 fi
 
 if [ ${BLOCK_CNT} -gt 64000000 ]; then
-    pt_error "Error: Block device size (${BLOCK_CNT}) is too large"
+    pt_error "Block device size (${BLOCK_CNT}) is too large"
     exit 1
 fi
 
-umount ${SDCARD}* 2>/dev/null
-pt_info "formatting sd card, please wait..."
-dd if=/dev/zero of=${SDCARD} bs=16M count=4
+cd ../tools/pack/out/ > /dev/null
+[ -e ${boot0_fex} ] && dd if=${boot0_fex} of=${SDCARD} bs=1k seek=8
+[ -e ${uboot_fex} ] && dd if=${uboot_fex} of=${SDCARD} bs=1k seek=19096
 sync
+cd -  > /dev/null
 
-fdisk $SDCARD <<EOF
-o
-n
-p
-
-
-
-w
-EOF
-mkfs.vfat ${SDCARD}1 -n SD
-sync
-pt_info "format success."
+pt_info "FINISH: U-boot fuse success"
