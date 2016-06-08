@@ -396,11 +396,11 @@ nand0_p3 = 0x55aaaa55
 disp_init_enable         = 1
 disp_mode                = 0
 
-screen0_output_type      = 1
-screen0_output_mode      = 4
+screen0_output_type      = 3
+screen0_output_mode      = 10
 
 screen1_output_type      = 3
-screen1_output_mode      = 4
+screen1_output_mode      = 10
 
 fb0_format               = 0
 fb0_width                = 0
@@ -442,7 +442,7 @@ fb1_height               = 0
 ;lcd_cmap_en           lcd color map function enable
 ;----------------------------------------------------------------------------------
 [lcd0]
-lcd_used            = 1
+lcd_used            = 0
 
 lcd_driver_name     = "dx0960be40a1"
 lcd_backlight       = 50
@@ -485,7 +485,7 @@ lcd_fix_power       = "vcc-dsi-33"
 
 [hdmi]
 hdmi_used = 1
-hdmi_power = "vcc-hdmi-33"
+;hdmi_power = "vcc-hdmi-33"
 hdmi_hdcp_enable = 0
 hdmi_cts_compatibility = 0
 
@@ -502,7 +502,7 @@ pwm_positive        = port:PD22<7><0><default><default>
 [boot_disp]
 output_disp = 0
 output_type = 3
-output_mode = 5
+output_mode = 10
 output_full = 0
 
 ;--------------------------------------------------------------------------------
