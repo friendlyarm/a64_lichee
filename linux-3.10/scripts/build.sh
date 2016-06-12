@@ -322,7 +322,7 @@ gen_output()
 clean_kernel()
 {
 	echo "Cleaning kernel ..."
-	make ARCH=${ARCH} clean
+	make ARCH=${ARCH} distclean
 	rm -rf output/*
 	echo
 }

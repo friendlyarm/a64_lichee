@@ -161,13 +161,11 @@ function init_kern_ver()
 function init_boards()
 {
     local chip=$1
-    local platform=$2
-	local kern_ver=$3
-    local board=$4
+    local board=$2
     local cnt=0
     local ret=1
 
-    for boarddir in ${LICHEE_TOOLS_DIR}/pack/chips/${chip}/configs/${platform}/* ; do
+    for boarddir in ${LICHEE_TOOLS_DIR}/pack/chips/${chip}/configs/* ; do
         boards[$cnt]=`basename $boarddir`
         if [ "x${boards[$cnt]}" = "x${board}" ] ; then
             ret=0
