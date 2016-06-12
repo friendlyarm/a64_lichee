@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SDCARD=$1
-FILE=boot.fex
+FILE=env.fex
 
 function pt_error()
 {
@@ -49,7 +49,7 @@ if [ ${BLOCK_CNT} -gt 64000000 ]; then
 fi
 
 cd ../tools/pack/out/ > /dev/null
-[ -e ${FILE} ] && dd if=${FILE} of=${SDCARD} bs=1M seek=84
+[ -e ${FILE} ] && dd if=${FILE} of=${SDCARD} bs=1M seek=68
 sync
 cd -  > /dev/null
 
