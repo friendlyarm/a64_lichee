@@ -188,7 +188,13 @@ int sunxi_bmp_display(char *name)
 	//const size_t bmp_buff_len = 10<<20; //10M
 	//size_t file_size = 0;
 	char * bmp_argv[6] = { "fatload", "mmc", "0:1", "00000000", bmp_name, NULL };
+	char *system = getenv("system");
 
+	if (!memcmp(system, "android", sizeof("android"))) 
+	{
+		memcpy(bmp_argv[2], "0:2", sizeof("0:2"));
+	}
+		
 	// free() function  will  take a long time,so not use malloc memory
 	bmp_buff = (char*)CONFIG_SYS_SDRAM_BASE; 
 	if(bmp_buff == NULL)
