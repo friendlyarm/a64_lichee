@@ -2,6 +2,7 @@
 
 SDCARD=$1
 FILE=boot.fex
+POSITION=68                 # default dragonboard
 
 function pt_error()
 {
@@ -18,20 +19,19 @@ function pt_info()
     echo -e "\033[1;32mINFO: $*\033[0m"
 }
 
-pt_warn "This script is only for ANDROID/DRAGON."
-
 if [ $UID -ne 0 ]
     then
-    pt_info "Please run as root."
+    pt_error "Please run as root."
     exit
 fi
 
-if [ $# -ne 1 ]; then
-    pt_info "Usage:$0 device"
+if [ $# -ne 2 ]; then
+    pt_error "Usage:$0 device system"
     exit 1
 fi
 
 DEV_NAME=`basename $1`
+SYSTEM=${2}
 BLOCK_CNT=`cat /sys/block/${DEV_NAME}/size`
 if [ $? -ne 0 ]; then
     pt_error "Can't find device ${DEV_NAME}"
@@ -48,9 +48,17 @@ if [ ${BLOCK_CNT} -gt 64000000 ]; then
     exit 1
 fi
 
-cd ../tools/pack/out/ > /dev/null
+if [ "x${SYSTEM}" = x"android" ]; then
+    POSITION=84
+elif [ "x${SYSTEM}" = x"dragonboard" ]; then
+    POSITION=68
+else
+    pt_error "This script is only for ANDROID/DRAGON."
+    exit 1
+fi
+cd tools/pack/out/ > /dev/null
 [ -e ${FILE} ] && dd if=${FILE} of=${SDCARD} bs=1M seek=84
 sync
 cd -  > /dev/null
 
-pt_info "FINISH: ${FILE} fuse success"
+pt_info "FINISH: boot.img fuse success"
