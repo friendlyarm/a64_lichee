@@ -253,7 +253,7 @@ int do_boota (cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 	
 	memcpy((void*)SYS_CONFIG_MEMBASE, (void*)gd->script_reloc_buf,gd->script_reloc_size);
 #endif
-	update_bootargs();
+	//update_bootargs();
 
 	//update fdt bootargs from env config
 	fdt_chosen(working_fdt);

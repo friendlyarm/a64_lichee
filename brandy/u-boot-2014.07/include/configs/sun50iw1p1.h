@@ -346,7 +346,9 @@
 	"mmc_root=/dev/mmcblk0p2\0" \
 	"init=/sbin/init\0" \
 	"loglevel=8\0" \
-	"setargs_mmc=setenv bootargs enforcing=${enforcing} earlyprintk=${earlyprintk} initcall_debug=${initcall_debug} console=${console} loglevel=${loglevel} root=${mmc_root} init=${init} partitions=${partitions} cma=${cma}\0" \
+	"setargs_mmc=setenv bootargs enforcing=${enforcing} earlyprintk=${earlyprintk} " \
+				 "initcall_debug=${initcall_debug} console=tty0 console=${console} no_console_suspend " \
+				 "loglevel=${loglevel} root=${mmc_root} init=${init} partitions=${partitions} cma=${cma} rootwait\0" \
 	"boot_normal=fatload mmc 0:1 4007f800 boot.img;boota 4007f800\0" \
 	"boot_recovery=sunxi_flash read 4007f800 recovery;boota 4007f800\0" \
 	"boot_fastboot=fastboot\0"
