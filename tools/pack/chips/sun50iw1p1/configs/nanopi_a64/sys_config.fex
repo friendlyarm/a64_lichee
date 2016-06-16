@@ -786,8 +786,8 @@ rndis_wceis         = 1
 ;---       USB1控制标志
 ;--------------------------------
 [usbc1]
-usbc1_used          = 0
-usb_drv_vbus_gpio   = port:PB06<1><0><default><0>
+usbc1_used          = 1
+;usb_drv_vbus_gpio   = port:PB06<1><0><default><0>
 usb_host_init_state = 1
 usb_regulator_io    = "nocare"
 usb_wakeup_suspend  = 0
