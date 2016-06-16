@@ -17,7 +17,7 @@ sun8iw6p1_linux			sun8i_defconfig		sun8iw6p1smp_defconfig
 sun8iw7p1_linux			sun8i_defconfig		sun8iw7p1smp_defconfig
 sun8iw8p1_linux			sun8iw8p1_defconfig	sun8iw8p1smp_defconfig
 sun8iw9p1_linux			sun8i_defconfig		sun8iw9p1smp_defconfig
-sun50iw1p1_linux		sun50i_defconfig	sun50iw1p1smp_defconfig
+sun50iw1p1_linux		sun50i_defconfig	sun50iw1p1smp_linux_defconfig
 
 sun8iw6p1_dragonboard 		xxx				sun8iw6p1smp_android_defconfig
 sun8iw5p1_dragonboard 		xxx				sun8iw5p1smp_android_defconfig
