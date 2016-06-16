@@ -530,7 +530,7 @@ output_full = 0
 ;--------------------------------------------------------------------------------
 
 [csi0]
-csi0_used               = 1
+csi0_used               = 0
 csi0_sensor_list        = 1
 csi0_pck                = port:PE00<2><default><default><default>
 csi0_mck                = port:PE01<0><0><1><0>
@@ -548,7 +548,7 @@ csi0_sck                = port:PE12<2><default><default><default>
 csi0_sda                = port:PE13<2><default><default><default>
 
 [csi0/csi0_dev0]
-csi0_dev0_used          = 1
+csi0_dev0_used          = 0
 csi0_dev0_mname         = "gc2155"
 csi0_dev0_twi_addr      = 0x78
 csi0_dev0_pos           = "rear"
@@ -580,7 +580,7 @@ csi0_dev0_act_name      = "ad5820_act"
 csi0_dev0_act_slave     = 0x18
 
 [csi0/csi0_dev1]
-csi0_dev1_used          = 1
+csi0_dev1_used          = 0
 csi0_dev1_mname         = "gc0328c"
 csi0_dev1_twi_addr      = 0x42
 csi0_dev1_pos           = "front"
