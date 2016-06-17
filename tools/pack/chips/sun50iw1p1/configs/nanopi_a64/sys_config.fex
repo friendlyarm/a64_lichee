@@ -1114,7 +1114,7 @@ gpio-spk = port:PH07<2><1><default><default>
 ;ir --- infra remote configuration
 ;----------------------------------------------------------------------------------
 [s_cir0]
-s_cir0_used         = 0
+s_cir0_used         = 1
 ir_power_key_code   = 0x0
 ir_addr_code        = 0x0
 
