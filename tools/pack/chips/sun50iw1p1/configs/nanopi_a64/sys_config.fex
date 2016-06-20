@@ -1432,3 +1432,8 @@ normal_freq       = 408
 scene_ctrl_status = 0
 temp_ctrl_status  = 1
 ;----------------------------------------------------------------------------------
+
+[leds_para]
+leds_used = 1
+blue_led = port:PD24<1><default><default><0>
+blue_led_active_low = 0
