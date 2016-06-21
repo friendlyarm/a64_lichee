@@ -35,6 +35,9 @@
 #include "sunxi_codec.h"
 #include "sunxi_rw_func.h"
 
+unsigned int __clk_get_enable_count(struct clk *clk);
+unsigned int __clk_get_prepare_count(struct clk *clk);
+
 //#define AIF1_FPGA_LOOPBACK_TEST
 #define codec_RATES  (SNDRV_PCM_RATE_8000_192000|SNDRV_PCM_RATE_KNOT)
 #define codec_FORMATS (SNDRV_PCM_FMTBIT_S8 | SNDRV_PCM_FMTBIT_S16_LE | \
@@ -736,7 +739,8 @@ static int set_src_function(struct snd_kcontrol *kcontrol,
 		snd_soc_update_bits(codec, SUNXI_SYS_SR_CTRL, (0x1<<SRC1_ENA), (0x1<<SRC1_ENA));
 	} else {
 		pr_debug("disable src clk.\n");
-		clk_disable_unprepare(sunxi_internal_codec->srcclk);
+		if ((__clk_get_enable_count(sunxi_internal_codec->srcclk)>0) && (__clk_get_prepare_count(sunxi_internal_codec->srcclk)>0) )
+			clk_disable_unprepare(sunxi_internal_codec->srcclk);
 		/*src1*/
 		snd_soc_update_bits(codec, SUNXI_MOD_CLK_ENA, (0x1<<SRC1_MOD_CLK_EN), (0x0<<SRC1_MOD_CLK_EN));
 		/*src2*/
