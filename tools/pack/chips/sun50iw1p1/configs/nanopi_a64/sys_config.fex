@@ -668,7 +668,7 @@ vqmmc		= "none"
 vdmmc 		= "vcc-sdc"
 
 [sdc1]
-sdc1_used          = 1
+sdc1_used          = 0
 bus-width	= 4
 sdc1_clk           = port:PG00<2><1><3><default>
 sdc1_cmd           = port:PG01<2><1><3><default>
@@ -687,7 +687,7 @@ max-frequency	   = 150000000
 
 
 [sdc2]
-sdc2_used          = 1
+sdc2_used          = 0
 non-removable	=
 bus-width	 = 8
 sdc2_ds            = port:PC01<3><1><3><default>
