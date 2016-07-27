@@ -32,7 +32,7 @@ static unsigned int sunxi_serial[4];
 static unsigned int sunxi_soc_ver;
 static int sunxi_soc_secure = 0;
 static unsigned int sunxi_soc_bin = 0;
-
+static int get_chipid_bootargs = 0;
 /**
  * soc version:
  */
@@ -117,11 +117,20 @@ static int sunxi_chipid_probe(struct platform_device *pdev)
 	if (IS_ERR(sun50i_sid_base))
 		return PTR_ERR(sun50i_sid_base);
 
-	sunxi_soc_chipid[0] = readl(sun50i_sid_base + 0x200);
-	sunxi_soc_chipid[1] = readl(sun50i_sid_base + 0x200 + 0x4);
-	sunxi_soc_chipid[2] = readl(sun50i_sid_base + 0x200 + 0x8);
-	sunxi_soc_chipid[3] = readl(sun50i_sid_base + 0x200 + 0xc);
-
+	if (get_chipid_bootargs == 1) {
+		printk("get chipid from bootargs\n");
+	} else {
+		sunxi_soc_chipid[0] = readl(sun50i_sid_base + 0x200);
+		sunxi_soc_chipid[1] = readl(sun50i_sid_base + 0x200 + 0x4);
+		sunxi_soc_chipid[2] = readl(sun50i_sid_base + 0x200 + 0x8);
+		sunxi_soc_chipid[3] = readl(sun50i_sid_base + 0x200 + 0xc);
+	}
+#if 0
+	int i;
+	for (i=0; i<4; i++) {
+		printk("chipid[%d]:%x\n", i, sunxi_soc_chipid[i]);
+	}
+#endif	
 	/* soc secure bit */
 	sunxi_soc_secure = ((readl(sun50i_sid_base + 0x0f4)) >> 11) & 1;
 
@@ -131,7 +140,11 @@ static int sunxi_chipid_probe(struct platform_device *pdev)
 	sunxi_serial[0] = sunxi_soc_chipid[3];
 	sunxi_serial[1] = sunxi_soc_chipid[2];
 	sunxi_serial[2] = (sunxi_soc_chipid[1] >> 16) & 0x0FFFF;
-
+#if 0
+	for (i=0; i<3; i++) {
+		printk("sunxi_serial[%d]:%x\n", i, sunxi_serial[i]);
+	}
+#endif
 	/* soc bin bit0~9 */
 	type = (sunxi_soc_chipid[0] >> 0) & 0x3ff;
 	switch (type) {
@@ -171,6 +184,24 @@ static int __init sunxi_chipid_drv_register(void)
 {
 	return platform_driver_register(&sunxi_chipid_driver);
 }
+
+static int __init set_sunxi_chipid(char *str)
+{
+	int i;
+
+	if (str != NULL && strlen(str)) {
+		sscanf(str, "%08x-%08x-%08x-%08x", &sunxi_soc_chipid[3], &sunxi_soc_chipid[2], &sunxi_soc_chipid[1], &sunxi_soc_chipid[0]);
+		for (i=0; i<4; i++) {
+			if (sunxi_soc_chipid[i] != 0) {
+				get_chipid_bootargs = 1;
+				break;
+			}
+		}
+	}
+	return 0;
+}
+__setup("sunxi_chipid=", set_sunxi_chipid);
+
 postcore_initcall(sunxi_chipid_drv_register);
 
 MODULE_LICENSE     ("GPL v2");

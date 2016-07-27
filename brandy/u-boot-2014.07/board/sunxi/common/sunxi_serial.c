@@ -49,7 +49,7 @@ int get_serial_num_from_file(char* serial)
 	return 0;
 }
 
-int get_serial_num_from_chipid(char* serial)
+int get_serial_num_from_chipid(char* serial, char* chipid)
 {
 	u32 sunxi_soc_chipid[4];
 	u32 sunxi_serial[3];
@@ -58,6 +58,13 @@ int get_serial_num_from_chipid(char* serial)
 	sunxi_soc_chipid[1] = smc_readl(SUNXI_SID_BASE + 0x200 + 0x4);
 	sunxi_soc_chipid[2] = smc_readl(SUNXI_SID_BASE + 0x200 + 0x8);
 	sunxi_soc_chipid[3] = smc_readl(SUNXI_SID_BASE + 0x200 + 0xc);
+#if 0
+	int i;
+	for (i=0; i<4; i++) {
+		printf("chipid[%d]:%x\n", i, sunxi_soc_chipid[i]);
+	}
+#endif
+	sprintf(chipid , "%08x-%08x-%08x-%08x",sunxi_soc_chipid[3], sunxi_soc_chipid[2], sunxi_soc_chipid[1], sunxi_soc_chipid[0]);
 
 	sunxi_serial[0] = sunxi_soc_chipid[3];
 	sunxi_serial[1] = sunxi_soc_chipid[2];
@@ -70,14 +77,19 @@ int get_serial_num_from_chipid(char* serial)
 int sunxi_set_serial_num(void)
 {
 	char serial[128] = {0};
+	char chipid[128] = {0};
 	if(get_serial_num_from_file(serial))
 	{
-		get_serial_num_from_chipid(serial);
+		get_serial_num_from_chipid(serial, chipid);
 	}
-	printf("serial is: %s\n",serial);
 	if(setenv("sunxi_serial", serial))
 	{
 		printf("error:set variable [sunxi_serial] fail\n");
+	}
+
+	if(setenv("sunxi_chipid", chipid))
+	{
+		printf("error:set variable [sunxi_chipid] fail\n");
 	}
 	return 0;
 }
