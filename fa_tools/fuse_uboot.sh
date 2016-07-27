@@ -26,7 +26,7 @@ if [ $UID -ne 0 ]
 fi
 
 if [ $# -ne 1 ]; then
-    pt_info "Usage:./fuse_uboot.sh device"
+    pt_error "Usage:./fuse_uboot.sh device"
     exit 1
 fi
 
