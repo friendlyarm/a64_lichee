@@ -27,7 +27,7 @@ storage_type    = -1
 burn_key = 0
 
 [power_sply]
-dcdc1_vol                  = 1003300
+dcdc1_vol                  = 1003100
 dcdc2_vol                  = 1001100
 dcdc6_vol                  = 1001100
 aldo1_vol                  = 2800
