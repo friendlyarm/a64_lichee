@@ -141,11 +141,14 @@ static void hid_reset(struct work_struct *work)
 			hid_io_error(hid);
 		break;
 	default:
+	// fix me
+#ifndef CONFIG_NANOPI	
 		hid_err(hid, "can't reset device, %s-%s/input%d, status %d\n",
 			hid_to_usb_dev(hid)->bus->bus_name,
 			hid_to_usb_dev(hid)->devpath,
 			usbhid->ifnum, rc);
-		/* FALLTHROUGH */
+#endif
+		/* FALLTHROUGH */		
 	case -EHOSTUNREACH:
 	case -ENODEV:
 	case -EINTR:

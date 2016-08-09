@@ -1383,7 +1383,7 @@ lv8_volt = 1040
 ;
 ;----------------------------------------------------------------------------------
 [s_uart0]
-s_uart0_used       = 1
+s_uart0_used       = 0
 s_uart0_tx         = port:PL02<2><default><default><default>
 s_uart0_rx         = port:PL03<2><default><default><default>
 

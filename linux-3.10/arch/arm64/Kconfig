@@ -160,6 +160,9 @@ config ARCH_SUNXI
 	help
 	  This enables support for Allwinner SUNXI SoC family
 
+config NANOPI
+	bool
+	
 config ARCH_SUN50I
 	bool "ARMv8 based Allwinner SUN50I"
 	select ARCH_SUNXI
@@ -169,6 +172,7 @@ config ARCH_SUN50I
 config ARCH_SUN50IW1P1
 	bool "ARMv8 based Allwinner SUN50IW1P1"
 	select ARCH_SUN50I
+	select NANOPI
 	help
 	  Thereis enables support for Allwinner SUNXI SoC family
 
