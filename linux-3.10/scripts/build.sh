@@ -180,7 +180,7 @@ build_kernel()
     #for file in $(find drivers sound crypto block fs security net -name "*.ko"); do
     #    cp $file ${LICHEE_MOD_DIR}
     #done
-    #cp -f Module.symvers ${LICHEE_MOD_DIR}
+    cp -f Module.symvers ${LICHEE_MOD_DIR}
     make ARCH=${ARCH} CROSS_COMPILE=${CROSS_COMPILE} -j${LICHEE_JLEVEL} INSTALL_MOD_PATH=output modules_install
 }
 
