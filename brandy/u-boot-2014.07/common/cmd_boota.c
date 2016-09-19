@@ -199,6 +199,7 @@ void update_bootargs(void)
 	char tmpbuf[128] = {0};
 	str = getenv("bootargs");
 
+	printf("update_bootargs for android\n");
 	strcpy(cmdline,str);
 	//charge type
 	if(gd->chargemode)
@@ -227,6 +228,7 @@ int do_boota (cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 	ulong rd_data,rd_len;
 	struct  andr_img_hdr *fb_hdr = NULL;
 	void *dtb_base = (void*)CONFIG_SUNXI_FDT_ADDR;
+	char *system;
 
 	if (argc < 2)
 		return cmd_usage(cmdtp);
@@ -253,7 +255,12 @@ int do_boota (cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 	
 	memcpy((void*)SYS_CONFIG_MEMBASE, (void*)gd->script_reloc_buf,gd->script_reloc_size);
 #endif
-	//update_bootargs();
+	system = getenv("system");
+
+	if (!memcmp(system, "android", sizeof("android"))) 
+	{
+		update_bootargs();
+	}
 
 	//update fdt bootargs from env config
 	fdt_chosen(working_fdt);
