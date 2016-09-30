@@ -768,7 +768,7 @@ smc_sda             =
 ;--------------------------------
 [usbc0]
 usbc0_used          = 1
-usb_port_type       = 2
+usb_port_type       = 1
 usb_detect_type     = 1
 usb_id_gpio         = port:PH09<0><1><default><default>
 usb_det_vbus_gpio   = "axp_ctrl"
