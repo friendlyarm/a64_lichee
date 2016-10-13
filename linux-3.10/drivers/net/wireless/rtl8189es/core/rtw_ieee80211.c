@@ -1382,7 +1382,7 @@ int rtw_get_mac_addr_intel(unsigned char *buf)
 }
 #endif //CONFIG_PLATFORM_INTEL_BYT
 
-extern void wifi_hwaddr_from_chipid(u8 *addr);
+//extern void wifi_hwaddr_from_chipid(u8 *addr);
 extern char* rtw_custom_default_mac;
 extern char* rtw_initmac;
 void rtw_macaddr_cfg(u8 *mac_addr)
@@ -1434,7 +1434,7 @@ void rtw_macaddr_cfg(u8 *mac_addr)
 		}
 		else
 		{
-			wifi_hwaddr_from_chipid(mac);
+			//wifi_hwaddr_from_chipid(mac);
 			if(!is_valid_ether_addr(mac))
 			{
 				random_ether_addr(mac);
