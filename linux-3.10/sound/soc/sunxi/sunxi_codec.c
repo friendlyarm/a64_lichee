@@ -277,7 +277,9 @@ static int codec_init(struct sunxi_codec *sunxi_internal_codec)
 	snd_soc_write(sunxi_internal_codec->codec, HP_CAL_CTRL, 0x87);
 	snd_soc_update_bits(sunxi_internal_codec->codec, SPKOUT_CTRL1, (0x1f<<SPKOUT_VOL), (sunxi_internal_codec->gain_config.spkervol<<SPKOUT_VOL));
 	snd_soc_update_bits(sunxi_internal_codec->codec, HP_CTRL, (0x3f<<HPVOL), (sunxi_internal_codec->gain_config.headphonevol<<HPVOL));
+	snd_soc_update_bits(sunxi_internal_codec->codec, HP_CTRL, (0x1<<HPPA_EN), (0x1<<HPPA_EN));
 	snd_soc_update_bits(sunxi_internal_codec->codec, EARPIECE_CTRL1, (0x1f<<ESP_VOL), (sunxi_internal_codec->gain_config.earpiecevol<<ESP_VOL));
+	snd_soc_update_bits(sunxi_internal_codec->codec, EARPIECE_CTRL1, (0x1<<ESPPA_EN), (0x1<<ESPPA_EN));
 	snd_soc_update_bits(sunxi_internal_codec->codec, MIC1_CTRL, (0x7<<MIC1BOOST), (sunxi_internal_codec->gain_config.maingain<<MIC1BOOST));
 	snd_soc_update_bits(sunxi_internal_codec->codec, MIC2_CTRL, (0x7<<MIC2BOOST), (sunxi_internal_codec->gain_config.headsetmicgain<<MIC2BOOST));
 
@@ -577,13 +579,13 @@ static int ac_headphone_event(struct snd_soc_dapm_widget *w,
 	case SND_SOC_DAPM_POST_PMU:
 		/*open*/
 		//snd_soc_update_bits(codec, HP_PA_CTRL, (0xf<<HPOUTPUTENABLE), (0xf<<HPOUTPUTENABLE));
-		snd_soc_update_bits(codec, HP_CTRL, (0x1<<HPPA_EN), (0x1<<HPPA_EN));
+		//snd_soc_update_bits(codec, HP_CTRL, (0x1<<HPPA_EN), (0x1<<HPPA_EN));
 		msleep(10);
 		snd_soc_update_bits(codec, MIX_DAC_CTRL, (0x3<<LHPPAMUTE), (0x3<<LHPPAMUTE));
 		break;
 	case SND_SOC_DAPM_PRE_PMD:
 		/*close*/
-		snd_soc_update_bits(codec, HP_CTRL, (0x1<<HPPA_EN), (0x0<<HPPA_EN));
+		// snd_soc_update_bits(codec, HP_CTRL, (0x1<<HPPA_EN), (0x0<<HPPA_EN));
 		//snd_soc_update_bits(codec, HP_PA_CTRL, (0xf<<HPOUTPUTENABLE), (0x0<<HPOUTPUTENABLE));
 		snd_soc_update_bits(codec, MIX_DAC_CTRL, (0x3<<LHPPAMUTE), (0x0<<LHPPAMUTE));
 		break;
@@ -600,11 +602,11 @@ static int ac_earpiece_event(struct snd_soc_dapm_widget *w,
 	switch (event) {
 	case SND_SOC_DAPM_POST_PMU:
 		/*open*/
-		snd_soc_update_bits(codec, EARPIECE_CTRL1, (0x1<<ESPPA_EN), (0x1<<ESPPA_EN));
+		// snd_soc_update_bits(codec, EARPIECE_CTRL1, (0x1<<ESPPA_EN), (0x1<<ESPPA_EN));
 		break;
 	case SND_SOC_DAPM_PRE_PMD:
 		/*close*/
-		snd_soc_update_bits(codec, EARPIECE_CTRL1, (0x1<<ESPPA_EN), (0x0<<ESPPA_EN));
+		// snd_soc_update_bits(codec, EARPIECE_CTRL1, (0x1<<ESPPA_EN), (0x0<<ESPPA_EN));
 		break;
 	}
 
