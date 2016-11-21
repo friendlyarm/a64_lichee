@@ -485,7 +485,7 @@ lcd_fix_power       = "vcc-dsi-33"
 
 [hdmi]
 hdmi_used = 1
-;hdmi_power = "vcc-hdmi-33"
+hdmi_power = "vcc-hdmi-33"
 hdmi_hdcp_enable = 0
 hdmi_cts_compatibility = 0
 

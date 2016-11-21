@@ -716,7 +716,7 @@ s32 hdmi_init(struct platform_device *pdev)
 	if (2 == ret) {
 		hdmi_power_used = 1;
 		if (hdmi_power_used) {
-			pr_info("[HDMI] power %s\n", hdmi_power);
+			printk("[HDMI] power %s\n", hdmi_power);
 			mutex_lock(&mlock);
 			ret = hdmi_power_enable(hdmi_power);
 			power_enable_count ++;
