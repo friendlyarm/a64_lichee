@@ -837,6 +837,7 @@ u-boot.bin: u-boot FORCE
 	$(call DO_STATIC_RELA,$<,$@,$(CONFIG_SYS_TEXT_BASE))
 	$(BOARD_SIZE_CHECK)
 	@git show HEAD --pretty=format:"%H" | head -n 1 > cur.log
+	@[ -s cur.log ] || echo "1234567891234567891234567891234567891234" >cur.log
 	./tools/add_hash_uboot.sh -f u-boot.bin -m uboot
 
 u-boot-$(CONFIG_TARGET_NAME).bin:   u-boot.bin
@@ -1348,6 +1349,7 @@ distclean: mrproper
 		\( -name '*.orig' -o -name '*.rej' -o -name '*~' \
 		-o -name '*.bak' -o -name '#*#' -o -name '.*.orig' \
 		-o -name '.*.rej' -o -name '*%' -o -name 'core' \
+		-o -name 'cur.log'\
 		-o -name '*.pyc' \) \
 		-type f -print | xargs rm -f
 
