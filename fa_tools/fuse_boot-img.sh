@@ -56,7 +56,7 @@ else
     pt_error "This script is only for ANDROID/DRAGON."
     exit 1
 fi
-cd tools/pack/out/ > /dev/null
+cd ../tools/pack/out/ > /dev/null
 [ -e ${FILE} ] && dd if=${FILE} of=${SDCARD} bs=1M seek=84
 sync
 cd -  > /dev/null
