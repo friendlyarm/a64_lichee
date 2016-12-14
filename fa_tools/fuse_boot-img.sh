@@ -57,7 +57,7 @@ else
     exit 1
 fi
 cd ../tools/pack/out/ > /dev/null
-[ -e ${FILE} ] && dd if=${FILE} of=${SDCARD} bs=1M seek=84
+[ -e ${FILE} ] && dd if=${FILE} of=${SDCARD} bs=1M seek=${POSITION}
 sync
 cd -  > /dev/null
 
