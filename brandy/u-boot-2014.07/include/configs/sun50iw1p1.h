@@ -335,7 +335,7 @@
 #define CONFIG_CMD_SAVEENV
 
 #define CONFIG_EXTRA_ENV_SETTINGS \
-	"enforcing=0\0" \
+	"selinux=0\0" \
 	"earlyprintk=sunxi-uart,0x01c28000\0" \
 	"initcall_debug=0\0" \
 	"cma=256M\0" \
@@ -346,7 +346,7 @@
 	"mmc_root=/dev/mmcblk0p2\0" \
 	"init=/sbin/init\0" \
 	"loglevel=8\0" \
-	"setargs_mmc=setenv bootargs enforcing=${enforcing} earlyprintk=${earlyprintk} " \
+	"setargs_mmc=setenv bootargs selinux=${selinux} earlyprintk=${earlyprintk} " \
 				 "initcall_debug=${initcall_debug} console=tty0 console=${console} no_console_suspend " \
 				 "loglevel=${loglevel} root=${mmc_root} init=${init} partitions=${partitions} cma=${cma} rootwait sunxi_chipid=${sunxi_chipid}\0" \
 	"boot_normal=fatload mmc 0:1 4007f800 boot.img;boota 4007f800\0" \
