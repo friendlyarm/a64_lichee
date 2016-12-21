@@ -2097,7 +2097,7 @@ struct mmc *mmc_create(const struct mmc_config *cfg, void *priv)
 	INIT_LIST_HEAD(&mmc->link);
 
 	list_add_tail(&mmc->link, &mmc_devices);
-
+	cur_dev_num++;
 	return mmc;
 }
 
