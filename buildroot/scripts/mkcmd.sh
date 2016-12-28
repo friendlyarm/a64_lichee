@@ -327,9 +327,9 @@ function clbr()
 function prepare_toolchain()
 {
     mk_info "prepare toolchain ..."
-    tooldir=${LICHEE_BR_OUT}/external-toolchain
+    tooldir=${LICHEE_TOP_DIR}/brandy/toolchain/gcc-aarch64/
     if [ ! -d ${tooldir} ] ; then
-        mkbr
+        (cd ${LICHEE_TOP_DIR}/brandy/ && ./build.sh -t)
     fi
 
     if ! echo $PATH | grep -q "${tooldir}" ; then
@@ -474,7 +474,7 @@ function mklichee()
     
 	check_env
 
-    mkbr && mkkernel
+    mkkernel
     [ $? -ne 0 ] && return 1
     if [ "x${LICHEE_PLATFORM}" = "xdragonboard" ]; then
         mkrootfs
