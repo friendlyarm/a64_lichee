@@ -316,7 +316,7 @@ function mkbr()
 
 function clbr()
 {
-    mk_info "build buildroot ..."
+    mk_info "clean buildroot ..."
 
     local build_script="scripts/build.sh"
     (cd ${LICHEE_BR_DIR} && [ -x ${build_script} ] && ./${build_script} "clean")
@@ -497,13 +497,23 @@ function mklichee()
 	mk_info "----------------------------------------"
 }
 
+function cluboot()
+{
+    mk_info "clean uboot ..."
+    (cd ${LICHEE_TOP_DIR}/brandy/u-boot-2014.07/ && make distclean)
+    mk_info "clean uboot OK."
+}
+
 function mkclean()
 {
+    cluboot
     clkernel
     clbr
 
     mk_info "clean product output dir ..."
-    rm -rf ${LICHEE_PLAT_OUT}
+    rm -rf ${LICHEE_OUT_DIR}
+    rm -rf ${LICHEE_TOOLS_DIR}/pack/*.img
+    rm -rf ${LICHEE_TOOLS_DIR}/pack/out
 }
 
 function mkdistclean()
