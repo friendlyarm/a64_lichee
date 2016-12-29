@@ -27,12 +27,12 @@ prepare_toolchain()
 
         echo "Prepare toolchain ..."
 
-        if [ ! -d "${tooldir_aarch64}" ]; then
+        if [ ! -z "${tooldir_aarch64}" ]; then
                 mkdir -p ${tooldir_aarch64} || exit 1
                 tar --strip-components=1 -xf ${toolchain_archive_aarch64} -C ${tooldir_aarch64} || exit 1
         fi
 
-        if [ ! -d "${tooldir_arm}" ]; then
+        if [ ! -z "${tooldir_arm}" ]; then
                 mkdir -p ${tooldir_arm} || exit 1
                 tar --strip-components=1 -xf ${toolchain_archive_arm} -C ${tooldir_arm} || exit 1
         fi

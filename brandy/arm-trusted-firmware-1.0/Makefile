@@ -28,7 +28,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 #
 #check gcc tools chain
-arm_toolchain_check=$(strip $(shell if [  -d ../toolchain/gcc-arm -a -d ../toolchain/gcc-aarch64 ];  then  echo yes;  fi ) )
+arm_toolchain_check=$(strip $(shell if [ -d ../toolchain/gcc-aarch64 ];  then  echo yes;  fi ) )
 ifneq ("$(arm_toolchain_check)", "yes")
   $(info "gcc tools chain not exist")
   $(info "Please run ./build.sh -t under brandy directory at the first time")
