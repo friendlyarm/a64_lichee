@@ -1350,6 +1350,7 @@ distclean: mrproper
 		-o -name '*.bak' -o -name '#*#' -o -name '.*.orig' \
 		-o -name '.*.rej' -o -name '*%' -o -name 'core' \
 		-o -name 'cur.log'\
+		-o -name '*\.bin'\
 		-o -name '*.pyc' \) \
 		-type f -print | xargs rm -f
 

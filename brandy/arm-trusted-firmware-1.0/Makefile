@@ -280,6 +280,7 @@ realclean distclean:
 			${Q}rm -rf ${BUILD_BASE}
 			${Q}rm -f ${CURDIR}/cscope.*
 			${Q}${MAKE} --no-print-directory -C ${FIPTOOLPATH} clean
+			${Q}rm -rf cur.log
 
 checkcodebase:		locate-checkpatch
 			@echo "  CHECKING STYLE"
@@ -431,6 +432,7 @@ $(BIN) : $(ELF)
 	@echo
 ifeq (bl31.bin,$(notdir ${BIN}))
 	$${Q}git show HEAD --pretty=format:"%H" | head -n 1 > cur.log
+	@[ -s cur.log ] || echo "1234567891234567891234567891234567891234" >cur.log
 	$${Q}./tools/add_hash_bl31.sh -f $$@ -m bl31
 endif
 	@cp -v $$@ ../../tools/pack/chips/$(DEFAULT_PLAT)/bin/

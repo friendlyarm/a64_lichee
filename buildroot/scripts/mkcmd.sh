@@ -497,23 +497,27 @@ function mklichee()
 	mk_info "----------------------------------------"
 }
 
-function cluboot()
+function clbrandy()
 {
-    mk_info "clean uboot ..."
+    mk_info "clean brandy ..."
     (cd ${LICHEE_TOP_DIR}/brandy/u-boot-2014.07/ && make distclean)
-    mk_info "clean uboot OK."
+    (cd ${LICHEE_TOP_DIR}/brandy/arm-trusted-firmware-1.0/ && make distclean)
+    mk_info "clean brandy OK."
 }
 
 function mkclean()
 {
-    cluboot
+    clbrandy
     clkernel
     clbr
 
     mk_info "clean product output dir ..."
+    rm -rf ${LICHEE_TOP_DIR}/.buildconfig
     rm -rf ${LICHEE_OUT_DIR}
     rm -rf ${LICHEE_TOOLS_DIR}/pack/*.img
     rm -rf ${LICHEE_TOOLS_DIR}/pack/out
+    (cd ${LICHEE_TOP_DIR}/brandy/pack_tools/ && find . -name "*\.[oa]" -exec rm {} \;)
+    (cd ${LICHEE_TOOLS_DIR}/pack/chips/${LICHEE_CHIP}/bin/ && rm -rf `ls | grep -v "scp.bin"`)
 }
 
 function mkdistclean()

@@ -116,6 +116,7 @@ build_kernel()
     echo "Building kernel"
 
     cd ${LICHEE_KDIR}
+    touch .scmversion
 
     rm -rf output/
     echo "${LICHEE_MOD_DIR}"
