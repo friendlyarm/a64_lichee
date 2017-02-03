@@ -21,12 +21,12 @@ function pt_info()
 
 if [ $UID -ne 0 ]
     then
-    echo "Please run as root."
+    echo "Please run as root or use sudo"
     exit
 fi
 
 if [ $# -ne 1 ]; then
-    pt_error "Usage:./fuse_uboot.sh device"
+    pt_error "Usage:./$0 device"
     exit 1
 fi
 
