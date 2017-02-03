@@ -30,7 +30,7 @@ if [ $UID -ne 0 ]
 fi
 
 if [ $# -ne 1 ]; then
-    pt_error "Usage:./fuse_uboot.sh device"
+    pt_error "Usage:./$0 device"
     exit 1
 fi
 
@@ -85,4 +85,4 @@ w
 EOF
 mkfs.vfat /dev/${DEV_PART_NAME} -n SD
 sync
-pt_info "format success."
+pt_info "Format Success."
